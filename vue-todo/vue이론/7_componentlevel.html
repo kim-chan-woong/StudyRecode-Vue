@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <app-header v-bind:propsdata="num"></app-header>
+        <!-- deliverNum메서드는 하나의 인자를 받도록 선언되어있지만 (value)를 생략하여도 암묵적으로 선언되어있다. / pass이벤트를 받을 시에 -->
+        <app-content v-on:pass='deliverNum'></app-content>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+    <script>
+        // 같은 레벨에서의 컴포넌트 통신 방식
+        // app-content에서 app-header로 데이터를 넘기는 과정
+        // 같은 레벨일 때에는 ROOT컴포넌트에 이벤트로 전달하고 ROOT컴포넌트에서 props로 전달한 하위 컴포넌트에 내려준다.
+        var appHeader = {
+            template: '<div>{{ propsdata }}</div>',
+            props: ['propsdata'],
+        }
+
+        var appContent = {
+            template: '<div>content<button v-on:click="passValue">pass</button></div>',
+            methods: {
+                passValue: function() {
+                    this.$emit('pass', 10);
+                }
+            }
+        }
+
+        new Vue({
+            el: '#app',
+            components: {
+                'app-header': appHeader,
+                'app-content': appContent
+            },
+            data: {
+                num: 0,
+            },
+            methods: {
+                deliverNum: function(value) {
+                    this.num = value;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

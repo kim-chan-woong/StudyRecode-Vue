@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- props 전달 문법 -> v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름" -->
+        <app-header v-bind:propsdata="message"></app-header>
+        <app-content v-bind:propsdata2="num"></app-content>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+    <script>
+        
+        // 상위 컴포넌트에서 하위 컴포넌트에 데이터를 넘겨주는 것을 props
+        var appHeader = {
+            template: '<h1>{{ propsdata }}</h1>',
+            // props:[]
+            props: ['propsdata'],
+        }
+
+        var appContent = {
+            template: '<h1>{{ propsdata2 }}</h1>',
+            props: ['propsdata2'],
+        }
+
+        new Vue({
+            el: '#app',
+            components: {
+                'app-header': appHeader,
+                'app-content': appContent,
+            },
+            data: {
+                // 이 데이터를 props를 통해 하위 컴포넌트(app-header)에 전달
+                // Reactivity 속성이 그대로 적용되어있음 -> 루트 컴포넌트의 데이터 값이 변경되는 대로 하위 컴포넌트에 넘겨준 props값도 변경됨
+                message: 'hi',
+                num: 10,
+            }
+        })
+    </script>
+</body>
+</html>

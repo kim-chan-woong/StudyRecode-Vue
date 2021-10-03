@@ -1,0 +1,11 @@
+1. vue-cli 공식 문서에서 설치
+2. node, npm 설치 및 버전 확인
+3. npm install -g @vue/cli
+4. 3번 트러블 슈팅
+   - permisson error: -g에 대한 권한이 없어 뜨는 오류 / 리눅스: sudo 붙이기 / 윈도우: %USERPROFILE%\AppData\Roaming\npm\node_modules(설치 경로)
+5. [Vue CLI 2.X]
+vue init '프로젝트 템플릿 유형' '프로젝트 폴더 위치'
+vue init webpack-simpe '프로젝트 폴더 위치'
+   [Vue CLI 3.x]
+   vue create '프로젝트 폴더 위치'
+   vue create vue-cli

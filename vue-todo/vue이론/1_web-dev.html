@@ -1,0 +1,90 @@
+ <!-- ! 타이핑 후 Tab시 자동 html문서가 생성 -->
+ <!-- html은 화면단에 DOM을 표현, Javascript는 DOM의 상태를 조작 -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+ </head>
+ <body>
+     <div id="app">
+     </div>
+
+     <script>
+        //  console.log(div)
+        //  $("#app") ==: 21
+        //  대부분 값이 변경되는 것들은 별도의 변수에 선언 후 조작: 22
+        //  문자가 바뀌었을 때 해당 내용이 반영되지 않음: 25
+        //  반영하려면 보는 것과 같이 다시 반영하는 코드를 작성 해야함: 26
+        //  기존의 일반적인 html 개발 패턴
+        //  var div = document.querySelector('#app');
+        //  var str = 'hello world!!!'
+        //  div.innerHTML = str;
+
+        //  str = 'change hello world!!';
+        //  div.innerHTML = str;
+
+        // vue의 Reactivity 특성
+        // 값이 변경될 때 마다 반영
+         var div = document.querySelector('#app');
+         var viewModel= {};
+
+        //  객체의 동작을 재정의하는 api
+        //  Object.defineProperty(대상 객체, 객체의 속성, {
+        //      정의할 내용
+        //  })
+        // 라이브러리 화
+        function init() {
+            Object.defineProperty(viewModel, 'str', {
+                // 속성에 접근했을 떄의 동작을 정의
+                get: function () {
+                    console.log('접근');
+                },
+                // 속성에 값을 할당했을 떄의 동작을 정의
+                set: function (newValue) {
+                    console.log('할당', newValue);
+                    render(newValue);
+                }
+            })
+        }
+        function render(value) {
+            div.innerHTML = value;
+        }
+
+        init();
+        
+        // javscript의 즉시 실행 함수, 일반적인 open api 구조 (function() {})();
+        // (function () {
+        //              var div = document.querySelector('#app');
+        //     var viewModel = {};
+
+        //     //  객체의 동작을 재정의하는 api
+        //     //  Object.defineProperty(대상 객체, 객체의 속성, {
+        //     //      정의할 내용
+        //     //  })
+        //     // 라이브러리 화
+        //     function init() {
+        //         Object.defineProperty(viewModel, 'str', {
+        //             // 속성에 접근했을 떄의 동작을 정의
+        //             get: function () {
+        //                 console.log('접근');
+        //             },
+        //             // 속성에 값을 할당했을 떄의 동작을 정의
+        //             set: function (newValue) {
+        //                 console.log('할당', newValue);
+        //                 render(newValue);
+        //             }
+        //         })
+        //     }
+        //     function render(value) {
+        //         div.innerHTML = value;
+        //     }
+
+        //     init();
+        // })();
+
+     </script>
+ </body>
+ </html>

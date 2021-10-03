@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- 생성한 컴포넌트를 화면에 출력 -->
+        <!-- 전역 -->
+        <app-header></app-header>
+        <!-- 지역 -->
+        <app-footer></app-footer>
+    </div>
+
+    <div id="app2">
+        <!-- app-header는 전역 컴포넌트이기에 생성된 모든 인스턴스에서 사용 가능 하지만
+        app-footer는 지역 컴포넌트이기에 인스턴스 생성 시 정의 되지 않으면 사용이 불가능 하다. -->
+        <app-header></app-header>
+        <app-footer></app-footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        // 최근 대부분의 모던 프레임워크들은 컴포넌트를 활용하여 개발
+        // 컴포넌트: 화면의 영역을 구분하여 개발할 수 있는 뷰의 기능, 재사용성(코드의 반복을 줄이고 이미 존재하는 코드들로 최대한 많은 화면을 찍어내며 화면의 영역을 구분하여 개발하는 것)
+        // 컴포넌트간의 관계가 생성됨
+
+        // 인스턴스 생성시 뷰 개발자 도구에 기본적으로 <Root> 컴포넌트가 된다.
+        // 생성한 컴포넌트는 <ROOT> 컴포넌트의 하위로 등록된다.
+
+        // 전역 컴포넌트 등록
+        // 실제 서비스 시에는 전역 컴포넌트는 잘 쓰지 않는다.
+        // Vue.component('컴포넌트 이름', {컴포넌트 내용});
+        Vue.component('app-header', {
+            // Vue인스턴스의 temlplate 속성: html 태그 관련
+            template: '<h1>Header</h1>'
+        });
+
+        new Vue({
+            el: '#app',
+            // 지역 컴포넌트 등록
+            // 일반적인 서비스 환경에선 대부분 인스턴스 하나를 생성하고 그 안에 지역 컴포넌트들을 정의해 나간다.
+            components: {
+            //     '키': '값' 형태로 정의
+            //     '컴포넌트 이름': {컴포넌트 내용}
+                'app-footer': {
+                    template: '<footer>footer</footer>',
+                }
+            }
+        });
+        // 지역 컴포넌트는 특정 컴포넌트 하단에 어떤 컴포넌트가 있는지 확인 가능함
+        // 전역 컴포넌트는 플러그인이나 라이브러리 형태의 전역으로 사용해야 할 때에 만 사용
+
+        // 인스턴스와 컴포넌트의 관계
+        // 인스턴스는 여러 개 생성 가능 (실제론 자주 그러진 않지만 이해를 돕기위해)
+        // 인스턴스를 생성한 수 많큼 <ROOT> 컴포넌트가 생성됨
+        new Vue({
+            el: '#app2',
+        })
+    </script>
+    
+</body>
+</html>

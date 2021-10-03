@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 클래스 바인딩 isError의 조건에 따라 클래스 이름을 warning으로 할당 할 것인지 하지 않을 것인지 -->
+        <!-- <p v-bind:class="{ warning: isError}">Hello</p> -->
+        <!-- computed를 활용한 클래스 바인딩 -->
+        <p v-bind:class="errorTextColor">Hello</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                // cname: 'blue-text',
+                isError: false,
+            },
+            computed: {
+                errorTextColor: function () {
+                    var result = this.isError ? 'warning' : null
+                    return result;
+                }
+            },
+        });
+    </script>
+</body>
+<style>
+    .warning {
+        color: red;
+    }
+</style>
+</html>

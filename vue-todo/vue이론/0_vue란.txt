@@ -1,0 +1,10 @@
+* Vue: MVVN 패턴의 뷰모델(ViewModel) 레이어에 해당하는 화면(View)단 라이브러리
+View는 브라우저에서 사용자가 보는 화면단(버튼, 입력창 등) -> html
+html은 DOM을 활용하여 JAVASCRIPT에서 조작할 수 있음
+VUE는 화면단에서 이벤트(클릭, 입력 등)들이 발생할 때에 이벤트 리스너를 통하여 JAVASCRIPT의 상태를 변경한다. DOM Listner
+javascript에서 상태가 변경(값이 바뀌는 등)되었을 떄 data bindings를 통해 화면에 반영한다.
+정리: view(html)  ->  ViewModel  ->  Model  
+      (DOM)         (DOM Listner)  (javascript)
+                    (Data Bindings)
+view에서 이벤트 발생 시 이벤트 리스너를 통해 vue가 캐치함 -> javascript 상태 변경
+javascript에서 상태 변경 시 데이터 바인딩스를 통해 view(html)을 변경

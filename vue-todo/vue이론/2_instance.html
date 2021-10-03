@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        // 생성자 함수로 뷰 인스턴스 생성
+        // 생성자 함수로 생성하는 이유는 Vue객체 생성 함수에 이미 정의된 함수, api 등을 편리하게 사용하기 위함
+        // 콘솔에 vm 타이핑 == 객체 정보(Vue에서 제공하는 api, 속성)
+        // el에 정의해야 vue 기능이 활성화 되고 정의된 함수, 데이터 등을 사용 가능함
+        // 가독성을 위해서는 Vue에 들어가는 객체를 별도의 변수에 담는 것이 아닌 생성과 동시에 정의하는 것이 좋음(객체 리터럴)
+        // var options = {el:..., data: {...}}
+        // var vm = new Vue(options) 보다는 아래 처럼
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'hi'
+            }
+        });
+
+        // 인스턴스에서 사용할 수 있는 속성과 api
+        // new Vue({
+        //     el: ,
+        //     template: ,
+        //     data: ,
+        //     methods: ,
+        //     created: ,
+        //     watch ,
+        // });
+    </script>
+</body>
+</html>
